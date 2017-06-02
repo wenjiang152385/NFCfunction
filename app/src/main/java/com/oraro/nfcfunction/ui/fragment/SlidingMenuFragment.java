@@ -22,9 +22,9 @@ import com.oraro.nfcfunction.utils.CustomFragmentManager;
  * Created by Administrator on 2017/6/2 0002.
  */
 public class SlidingMenuFragment extends Fragment {
-    private String[] texts = new String[]{"出库", "入库", "录入", "人员", "登录", "设置"};
+    private String[] texts = new String[]{"出库", "入库", "录入",  "设置"};
     private int[] imageviews = {R.drawable.delay1, R.drawable.urgent_broadcast1, R.drawable.handexcel
-            , R.drawable.addfight, R.drawable.history, R.drawable.settings};
+            ,  R.drawable.settings};
     public int clickPosition = -1;//默认为-1
     private ListView listview;
     private MyAdapter adapter;

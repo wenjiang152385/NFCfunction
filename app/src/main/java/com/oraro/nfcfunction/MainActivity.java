@@ -7,6 +7,9 @@ import com.oraro.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.oraro.nfcfunction.ui.activity.BaseActivity;
 import com.oraro.nfcfunction.ui.fragment.FragmentA;
 import com.oraro.nfcfunction.ui.fragment.FragmentB;
+import com.oraro.nfcfunction.ui.fragment.FragmentC;
+import com.oraro.nfcfunction.ui.fragment.FragmentD;
+import com.oraro.nfcfunction.ui.fragment.FragmentE;
 import com.oraro.nfcfunction.ui.fragment.SlidingMenuFragment;
 import com.oraro.nfcfunction.utils.CustomFragmentManager;
 import com.oraro.nfcfunction.utils.UIUtils;
@@ -54,6 +57,12 @@ public class MainActivity extends BaseActivity {
         FragmentA fragmentA=new FragmentA();
         FragmentB  fragmentB=new FragmentB();
         mCustomFragmentManager.addFragment(fragmentB);
+        FragmentC fragmentC =new FragmentC();
+        mCustomFragmentManager.addFragment(fragmentC);
+        FragmentD fragmentD=new FragmentD();
+        mCustomFragmentManager.addFragment(fragmentD);
+        FragmentE fragmentE=new FragmentE();
+        mCustomFragmentManager.addFragment(fragmentE);
         mCustomFragmentManager.setMainFragment(fragmentA);
         mCustomFragmentManager.startFragment(fragmentA);
     }
