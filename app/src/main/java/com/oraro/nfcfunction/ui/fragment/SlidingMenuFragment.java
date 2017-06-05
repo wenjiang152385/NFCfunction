@@ -54,6 +54,7 @@ public class SlidingMenuFragment extends Fragment {
                 adapter.notifyDataSetChanged();
                 CustomFragmentManager.getInstance(mActivity).startFragment(position);
                 clickPosition = position;
+                mActivity.hidingmenu();
             }
         });
     }

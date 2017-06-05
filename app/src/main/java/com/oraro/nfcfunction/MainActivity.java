@@ -26,6 +26,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        getSupportActionBar().hide();
         menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.LEFT);
         //设置触摸屏幕的模式
@@ -35,7 +36,7 @@ public class MainActivity extends BaseActivity {
 
         // 设置滑动菜单视图的宽度
         UIUtils mUiUtils = new UIUtils();
-        menu.setBehindOffset(mUiUtils.getDisplayMetrics(this).heightPixels * 1 / 5);
+        menu.setBehindOffset(mUiUtils.getDisplayMetrics(this).widthPixels * 4 / 5);
         // 设置渐入渐出效果的值
         menu.setFadeDegree(0.35f);
         /**
@@ -70,6 +71,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
+    }
+    public    void  hidingmenu() {
+        menu.toggle();
     }
 
 }
