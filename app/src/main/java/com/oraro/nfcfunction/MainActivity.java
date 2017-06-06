@@ -17,6 +17,7 @@ import com.oraro.nfcfunction.utils.UIUtils;
 public class MainActivity extends BaseActivity {
 
     private SlidingMenu menu;
+    private CustomFragmentManager mCustomFragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class MainActivity extends BaseActivity {
         transaction.replace(R.id.id_left_menu_frame, mSlidingMenuFragment, "Slidingmenu");
         transaction.commit();
         CustomFragmentManager.setCustomFragmentManagerNull();
-        CustomFragmentManager  mCustomFragmentManager = CustomFragmentManager.getInstance(this);
+        mCustomFragmentManager = CustomFragmentManager.getInstance(this);
         mCustomFragmentManager.setShowViewId(R.id.frame_1);
         FragmentA fragmentA=new FragmentA();
         FragmentB  fragmentB=new FragmentB();
@@ -66,6 +67,12 @@ public class MainActivity extends BaseActivity {
         mCustomFragmentManager.addFragment(fragmentE);
         mCustomFragmentManager.setMainFragment(fragmentA);
         mCustomFragmentManager.startFragment(fragmentA);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mCustomFragmentManager.destory();
     }
 
     @Override
