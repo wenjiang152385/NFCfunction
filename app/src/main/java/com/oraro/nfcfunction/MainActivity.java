@@ -2,8 +2,12 @@ package com.oraro.nfcfunction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.widget.Toast;
 
 import com.oraro.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.oraro.nfcfunction.ui.activity.NFCBaseActivity;
@@ -19,11 +23,22 @@ import com.oraro.nfcfunction.utils.UIUtils;
 public class MainActivity extends NFCBaseActivity {
 
     private SlidingMenu menu;
-    public  static boolean isLogin;
     private UIUtils mUiUtils;
     private CustomFragmentManager mCustomFragmentManager;
     private FragmentA fragmentA;
+    private boolean mIsClickBackBtn = false;
+    private static final int MSG_QUIT_APP = 1;
 
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MSG_QUIT_APP:
+                    mIsClickBackBtn = false;
+                    break;
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,5 +132,19 @@ public class MainActivity extends NFCBaseActivity {
 //        menu.add(0, SECOND, 2, "退出");
 //        return true;
 //    }
+@Override
+public boolean onKeyDown(int keyCode, KeyEvent event) {
+    switch (keyCode) {
+        case KeyEvent.KEYCODE_BACK:
+            if (!mIsClickBackBtn) {
+                Toast.makeText(this,"再按一次退出应用",Toast.LENGTH_SHORT).show();
+                mHandler.sendEmptyMessageDelayed(MSG_QUIT_APP, 3000);
+                mIsClickBackBtn = true;
+                return true;
+            }
+            break;
+    }
+    return super.onKeyDown(keyCode, event);
+}
 
 }

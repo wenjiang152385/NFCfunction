@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".HomeActivity" >
+     >
 
     <LinearLayout
         android:id="@+id/web_Url_Layout"
@@ -92,6 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginTop="2dp"
+            android:visibility="gone"
             android:layout_toRightOf="@id/Home_Btn"
             android:background="@drawable/window_button" />
 
