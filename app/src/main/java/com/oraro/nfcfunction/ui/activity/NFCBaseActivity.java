@@ -1,7 +1,6 @@
 package com.oraro.nfcfunction.ui.activity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -13,6 +12,7 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v7.app.AppCompatActivity;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -26,7 +26,7 @@ import java.util.HashMap;
  *
  */
 @SuppressLint("Registered")
-public class NFCBaseActivity extends Activity {
+public  class NFCBaseActivity extends AppCompatActivity {
 
 	protected NfcAdapter adapter;
 	protected boolean isDBSupported;
@@ -47,7 +47,6 @@ public class NFCBaseActivity extends Activity {
 				getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
 		intentFilters = new IntentFilter[] {};
 	}
-
 	@Override
 	protected void onPause() {
 		super.onPause();

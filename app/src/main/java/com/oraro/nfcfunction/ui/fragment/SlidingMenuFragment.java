@@ -46,17 +46,19 @@ public class SlidingMenuFragment extends Fragment {
     }
     private void initView(View view) {
         listview = (ListView) view.findViewById(R.id.list_view);
-        adapter = new MyAdapter();
-        listview.setAdapter(adapter);
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                adapter.notifyDataSetChanged();
-                CustomFragmentManager.getInstance(mActivity).startFragment(position);
-                clickPosition = position;
-                mActivity.hidingmenu();
-            }
-        });
+            adapter = new MyAdapter();
+            listview.setAdapter(adapter);
+            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    adapter.notifyDataSetChanged();
+                    CustomFragmentManager.getInstance(mActivity).startFragment(position);
+                    clickPosition = position;
+                    mActivity.hidingmenu();
+                }
+            });
+
+
     }
 
     class MyAdapter extends BaseAdapter{

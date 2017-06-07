@@ -145,6 +145,11 @@ public class CustomFragmentManager {
                 .replace(mViewId, f, f.getTag())
                 .commit();
     }
+    public  void removeFragment(Fragment f){
+        mFragmentActivity.getSupportFragmentManager().beginTransaction()
+                .remove(f)
+                .commit();
+    }
 
     /**
      * 将一个fragment放入到管理栈中
@@ -160,7 +165,7 @@ public class CustomFragmentManager {
      *
      * @return
      */
-    private Fragment popFragment() {
+    public Fragment popFragment() {
         Fragment f = mFragmentStack.pop();
         return f;
     }
