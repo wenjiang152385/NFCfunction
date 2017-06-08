@@ -145,11 +145,6 @@ public class CustomFragmentManager {
                 .replace(mViewId, f, f.getTag())
                 .commit();
     }
-    public  void removeFragment(Fragment f){
-        mFragmentActivity.getSupportFragmentManager().beginTransaction()
-                .remove(f)
-                .commit();
-    }
 
     /**
      * 将一个fragment放入到管理栈中
@@ -165,7 +160,7 @@ public class CustomFragmentManager {
      *
      * @return
      */
-    public Fragment popFragment() {
+    private Fragment popFragment() {
         Fragment f = mFragmentStack.pop();
         return f;
     }
@@ -187,7 +182,24 @@ public class CustomFragmentManager {
     public int getSize() {
         return mFragmentStack.size();
     }
-
+    /**
+     * 关闭当前的fragment
+     */
+    public int finishFragment() {
+        Fragment f = peekFragment();
+//        //如果关闭的是延误信息页面，则需要判断当前是否正则更新延误信息
+//        if(f instanceof DelayActivityFragment){
+//            DelayActivityFragment mDelayActivityFragment = (DelayActivityFragment) f;
+//            if(mDelayActivityFragment.checkUpdateState(false)){
+//                return getSize();
+//            }
+//        }
+        popFragment();
+        f = peekFragment();
+        //mFragmentActivity.getSupportFragmentManager().beginTransaction().replace(mViewId, f, f.getTag()).commit();
+        replaceFragment(f,false);
+        return getSize();
+    }
     /**
      * 销毁fragment的管理
      */

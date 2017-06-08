@@ -32,7 +32,7 @@ public  class NFCBaseActivity extends AppCompatActivity {
 	protected boolean isDBSupported;
 	protected boolean isTagDiscovered;
 
-	protected HashMap<String, String> techMap;
+	public HashMap<String, String> techMap;
 	protected ArrayList<HashMap<String, String>> msgsList;
 
 	private PendingIntent pendingIntent;
@@ -140,6 +140,6 @@ public  class NFCBaseActivity extends AppCompatActivity {
 				e.printStackTrace();
 			}
 		}
-	};
+	}
 
 }
