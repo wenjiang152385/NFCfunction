@@ -82,7 +82,7 @@ public  class NFCBaseActivity extends AppCompatActivity {
 	protected void parseNFC(Intent intent) {
 		// [Neo] 给用户通知
 		notifyUser();
-		
+
 		techMap = NFCs.dumpTag((Tag) intent
 				.getParcelableExtra(NfcAdapter.EXTRA_TAG));
 

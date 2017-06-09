@@ -5,4 +5,5 @@ package com.oraro.nfcfunction.utils;
  */
 public class Constants {
     public final static int BACK_MAIN_CLOSE=1;
+    public final static String SERVICE_IP="http://192.168.9.138:8081/";
 }

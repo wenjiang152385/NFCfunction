@@ -3,14 +3,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:text="FramentB"
-    />
-    <WebView
+    <include layout="@layout/add_titlebar1"/>
+    <com.oraro.nfcfunction.ui.view.ProgressWebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/webview_b"
-        ></WebView>
+        />
 </LinearLayout>

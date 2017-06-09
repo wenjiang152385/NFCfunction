@@ -3,21 +3,22 @@ package com.oraro.nfcfunction.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import com.oraro.nfcfunction.R;
+import com.oraro.nfcfunction.ui.view.ProgressWebView;
+import com.oraro.nfcfunction.utils.Constants;
 
 /**
  * Created by Administrator on 2017/6/2 0002.
  */
 public class FragmentA extends Fragment {
 
-    private WebView webView;
+    private ProgressWebView webView;
 
     @Nullable
     @Override
@@ -31,16 +32,21 @@ public class FragmentA extends Fragment {
     }
 
     private void initView(View view) {
-        webView = (WebView) view.findViewById(R.id.webview_a);
+        webView = (ProgressWebView) view.findViewById(R.id.webview_a);
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
-        webView.loadUrl("http://192.168.9.138:8080/horizon-web");
-        webView.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
-        });
+        webView.loadUrl(Constants.SERVICE_IP+"horizon-web");
+        String uri=webView.getUrl();
+
+        webView.setFocusable(true);
+        webView.setFocusableInTouchMode(true);
+//        webView.setWebViewClient(new WebViewClient(){
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                view.loadUrl(url);
+//
+//                return true;
+//            }
+//        });
     }
 }
