@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include layout="@layout/add_titlebar1"/>
+    <!--<include layout="@layout/add_titlebar1"/>-->
     <com.oraro.nfcfunction.ui.view.ProgressWebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -148,8 +148,6 @@ public class MainActivity extends NFCBaseActivity {
                         resetMenu(i);
                         return true;
                     }
-//                }
-
         }
         return super.onKeyDown(keyCode, event);
     }
