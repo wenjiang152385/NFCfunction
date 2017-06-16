@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
 
 import com.oraro.nfcfunction.MainActivity;
 import com.oraro.nfcfunction.R;
@@ -21,7 +20,7 @@ import com.oraro.nfcfunction.utils.Constants;
  */
 public class FragmentC extends Fragment {
 
-    private WebView webView;
+    private ProgressWebView webView;
     private MainActivity mainActivity;
     @Nullable
     @Override

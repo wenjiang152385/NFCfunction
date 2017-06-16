@@ -7,7 +7,6 @@ import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.Toast;
 
 import com.oraro.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.oraro.nfcfunction.ui.activity.NFCBaseActivity;
@@ -147,14 +146,15 @@ public class MainActivity extends NFCBaseActivity {
                     if (menu.isMenuShowing()) {
                         menu.toggle();
                         return  true;
-                    }else if (!mIsClickBackBtn){
-//                        if (!mIsClickBackBtn) {
-                            Toast.makeText(this,"再按一次退出应用", Toast.LENGTH_SHORT).show();
-                            mHandler.sendEmptyMessageDelayed(MSG_QUIT_APP, 3000);
-                            mIsClickBackBtn = true;
-                            return true;
-//                        }
                     }
+//                    else if (!mIsClickBackBtn){
+////                        if (!mIsClickBackBtn) {
+//                            Toast.makeText(this,"再按一次退出应用", Toast.LENGTH_SHORT).show();
+//                            mHandler.sendEmptyMessageDelayed(MSG_QUIT_APP, 3000);
+//                            mIsClickBackBtn = true;
+//                            return true;
+////                        }
+//                    }
                     if (mCustomFragmentManager.getSize() > 1) {
                         int i = mCustomFragmentManager.finishFragment();
                         resetMenu(i);
