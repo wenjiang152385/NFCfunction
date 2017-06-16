@@ -13,12 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import com.oraro.nfcfunction.MainActivity;
 import com.oraro.nfcfunction.R;
 import com.oraro.nfcfunction.ui.view.ProgressWebView;
 import com.oraro.nfcfunction.utils.Constants;
+import com.oraro.nfcfunction.utils.CustomFragmentManager;
 
 /**
  * Created by Administrator on 2017/6/2 0002.
@@ -36,11 +36,13 @@ public class FragmentB extends Fragment {
             isExit = false;
         }
     };
+    private CustomFragmentManager mCustomFragmentManager;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
        View view= inflater.inflate(R.layout.fragment_b,container,false);
+        mCustomFragmentManager = CustomFragmentManager.getInstance(getActivity());
         initView(view);
         return view;
     }
@@ -58,19 +60,12 @@ public class FragmentB extends Fragment {
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         webView.addJavascriptInterface(new JavascriptInterface(),"androidToast");
-        webView.loadUrl(Constants.SERVICE_IP+"horizon-web//horizon/workflow/support/open.wf?flowId=wtdsp");
+        webView.loadUrl(Constants.SERVICE_IP+"horizon-web/horizon/workflow/support/open.wf?flowId=wtdsp");
+//        webView.loadUrl(Constants.SERVICE_IP+"horizon-web/horizon/workflow/support/open.wf?flowId=wtdsp&formId=HZ2889e95b21ffc6015b220cbf3c000b");
+//        webView.loadUrl(Constants.SERVICE_IP+"horizon-web/horizon/template/form/default.wf?flowId=wtdsp&formId=HZ2889e95b21ffc6015b220cbf3c000b");
         webView.setFocusable(true);
         webView.setFocusableInTouchMode(true);
         webView.setWebViewClient(new WebViewClient());
-//         webView.setWebViewClient(new WebViewClient(){
-//             @Override
-//             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-////                   webView.loadUrl(Constants.SERVICE_IP+"horizon-web//horizon/workflow/support/open.wf?flowId=wtdsp");
-////                 return super.shouldOverrideUrlLoading(view, url);
-//                view.loadUrl(url);
-//                 return true;
-//             }
-//
 //             @Override
 //             public void onPageFinished(WebView view, String url) {
 ////                 super.onPageFinished(view, url);
@@ -88,19 +83,6 @@ public class FragmentB extends Fragment {
 //
 //             }
 //         });
-
-//       webView.setWebViewClient(new WebViewClient(){
-//           @Override
-//           public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//               view.loadUrl(Constants.SERVICE_IP+"horizon-web//horizon/workflow/support/open.wf?flowId=wtdsp");
-//               return true;
-//           }
-//       });
-//        webView.loadUrl(Constants.SERVICE_IP+"horizon-web/horizon/template/form/default.wf?formId=HZ2889e95b21ffc6015b220cbf3c000b");
-
-//        webView.setFocusable(true);
-//        webView.setFocusableInTouchMode(true);
-//        webView.loadUrl(Constants.SERVICE_IP+"horizon-web//horizon/workflow/support/open.wf?flowId=wtdsp");
     }
 
     @Override
@@ -109,29 +91,14 @@ public class FragmentB extends Fragment {
         Log.e("jw","lllllll");
         webView.loadUrl("javascript: entrust_readrfid('" +  mainActivity.uid + "')");
     }
-//    public void goback(){
-//        // 判断是否可退
-//        if (webView.canGoBack()) {
-//            webView.goBack();
-//            // 也可以在其中更改其他按钮状态
-//        } else {
-//            if (!isExit) {
-//                isExit = true;
-//                Toast.makeText(mainActivity, "再按一次退出程序",
-//                        Toast.LENGTH_LONG).show();
-//                // 2s判定
-//                handler.sendEmptyMessageDelayed(0, 2000);
-//            } else {
-//               mainActivity.finish();
-//                System.exit(0);
-//            }
-//        }
-//    }
 
     private class JavascriptInterface {
         @android.webkit.JavascriptInterface
         public void showToast() {
-            Toast.makeText(mainActivity, "提交成功", Toast.LENGTH_LONG).show();
+            if (mCustomFragmentManager.getSize() > 1) {
+                mCustomFragmentManager.finishFragment();
+
+            }
         }
     }
 }

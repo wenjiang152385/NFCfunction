@@ -45,12 +45,13 @@ public class ProgressWebView extends WebView {
         // 初始化设置
         WebSettings mSettings = this.getSettings();
         mSettings.setJavaScriptEnabled(true);//开启javascript
+        mSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         mSettings.setDomStorageEnabled(true);//开启DOM
         mSettings.setDefaultTextEncodingName("utf-8");//设置字符编码
         //设置web页面
         mSettings.setAllowFileAccess(true);//设置支持文件流
         mSettings.setSupportZoom(true);// 支持缩放
-        mSettings.setBuiltInZoomControls(true);// 支持缩放
+        mSettings.setBuiltInZoomControls(false);// 支持缩放
         mSettings.setUseWideViewPort(true);// 调整到适合webview大小
         mSettings.setLoadWithOverviewMode(true);// 调整到适合webview大小
         mSettings.setDefaultZoom(WebSettings.ZoomDensity.FAR);// 屏幕自适应网页,如果没有这个，在低分辨率的手机上显示可能会异常

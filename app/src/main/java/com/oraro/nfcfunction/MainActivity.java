@@ -134,14 +134,6 @@ public class MainActivity extends NFCBaseActivity {
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        switch (keyCode) {
-//            case KeyEvent.KEYCODE_BACK:
-//                if (!mIsClickBackBtn) {
-//                    Toast.makeText(this,"再按一次退出应用", Toast.LENGTH_SHORT).show();
-//                    mHandler.sendEmptyMessageDelayed(MSG_QUIT_APP, 3000);
-//                    mIsClickBackBtn = true;
-//                    return true;
-//                }
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
                     if (menu.isMenuShowing()) {
                         menu.toggle();
