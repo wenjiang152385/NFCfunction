@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.oraro.nfcfunction.MainActivity;
 import com.oraro.nfcfunction.R;
@@ -99,6 +100,9 @@ public class FragmentB extends Fragment {
                 mCustomFragmentManager.finishFragment();
 
             }
+        }
+        public  void showtalk(){
+            Toast.makeText(mainActivity,"提交成功",Toast.LENGTH_SHORT).show();
         }
     }
 }
