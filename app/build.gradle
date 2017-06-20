@@ -9,7 +9,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 24
         versionCode 2
-        versionName "1.0.1"
+        versionName "1.0.2"
     }
     buildTypes {
         release {
@@ -24,4 +24,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.google.guava:guava:15.0'
+    compile files('libs/jdom.jar')
+    compile files('libs/SenterOpenApi_1.2.3.68_Common.jar')
+    compile files('libs/SenterOpenApi_1.2.3.68_IoT.jar')
+    compile 'com.android.support:support-v4:24.2.0'
+
 }

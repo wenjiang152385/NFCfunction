@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
-import android.widget.Toast;
 
 import com.oraro.nfcfunction.MainActivity;
 import com.oraro.nfcfunction.R;
@@ -60,23 +59,5 @@ public class FragmentA extends Fragment {
         webView.setFocusable(true);
         webView.setFocusableInTouchMode(true);
     }
-    public void goback(){
-        // 判断是否可退
-        if (webView.canGoBack()) {
-            webView.goBack();
-        }
-            // 也可以在其中更改其他按钮状态
-         else {
-            if (!isExit) {
-                isExit = true;
-                Toast.makeText(mainActivity, "再按一次退出程序",
-                        Toast.LENGTH_LONG).show();
-                // 2s判定
-                handler.sendEmptyMessageDelayed(0, 2000);
-            } else {
-                mainActivity.finish();
-                System.exit(0);
-            }
-        }
-    }
+
 }

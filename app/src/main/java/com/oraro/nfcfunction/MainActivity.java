@@ -1,15 +1,16 @@
 package com.oraro.nfcfunction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 
 import com.oraro.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.oraro.nfcfunction.ui.activity.NFCBaseActivity;
+import com.oraro.nfcfunction.common.App;
+import com.oraro.nfcfunction.common.ExceptionForToast;
 import com.oraro.nfcfunction.ui.fragment.FragmentA;
 import com.oraro.nfcfunction.ui.fragment.FragmentB;
 import com.oraro.nfcfunction.ui.fragment.FragmentC;
@@ -20,12 +21,13 @@ import com.oraro.nfcfunction.utils.Constants;
 import com.oraro.nfcfunction.utils.CustomFragmentManager;
 import com.oraro.nfcfunction.utils.SimpleEvent;
 import com.oraro.nfcfunction.utils.UIUtils;
+import com.senter.support.openapi.StUhf;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public class MainActivity extends NFCBaseActivity {
+public class MainActivity extends AppCompatActivity {
     private SlidingMenu menu;
     private CustomFragmentManager mCustomFragmentManager;
     private boolean mIsClickBackBtn = false;
@@ -43,7 +45,7 @@ public class MainActivity extends NFCBaseActivity {
             }
         }
     };
-    public static String uid;
+//    public static String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,16 @@ public class MainActivity extends NFCBaseActivity {
             EventBus.getDefault().register(this);
         }
     setContentView(R.layout.activity_main);
+        uhfModelChoiced(null);
+        //App.appCfgSaveModelClear();
+        App.getUhf(App.appCfgSavedModel());
+        try {
+            App.uhfInit();
+        } catch (ExceptionForToast e) {
+            e.printStackTrace();
+            App.uhfClear();
+            App.appCfgSaveModelClear();
+        }
         menu=new SlidingMenu(this);
         menu.setMode(SlidingMenu.LEFT);
     //设置触摸屏幕的模式
@@ -96,7 +108,29 @@ public class MainActivity extends NFCBaseActivity {
     mCustomFragmentManager.setMainFragment(fragmentA);
     mCustomFragmentManager.startFragment(fragmentA);
 }
-
+    protected void uhfModelChoiced(StUhf.InterrogatorModel interrogatorModel){
+        if (interrogatorModel==null) {
+            if (App.getUhfWithDetectionAutomaticallyIfNeed()!=null) {
+//                if (views.cbRememberChoice.isChecked()) {
+//                    App.appCfgSaveModel(App.uhfInterfaceAsModel());
+//                }else {
+//                }
+                App.appCfgSaveModelClear();
+            }else {
+//                ah.showToastShort("no uhf module detected");
+            }
+        }else {
+            if (App.getUhf(interrogatorModel)!=null) {
+//                if (views.cbRememberChoice.isChecked()) {
+//                    App.appCfgSaveModel(interrogatorModel);
+//                }else {
+//                }
+                App.appCfgSaveModelClear();
+            }else {
+//                ah.showToastShort("no uhf module detected");
+            }
+        }
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -124,14 +158,14 @@ public class MainActivity extends NFCBaseActivity {
     public  void  hidingmenu() {
         menu.toggle();
     }
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        uid = techMap.get("uid").replace(":", " ");
-        Log.e("jw", "uid==" + uid + "techMap==" + techMap);
-
-
-    }
+//    @Override
+//    protected void onNewIntent(Intent intent) {
+//        super.onNewIntent(intent);
+//        uid = techMap.get("uid").replace(":", " ");
+//        Log.e("jw", "uid==" + uid + "techMap==" + techMap);
+//
+//
+//    }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
